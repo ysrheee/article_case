@@ -21,8 +21,8 @@ class Article(models.Model):
         (FIVE, '5점')
     )
 
-    name = models.TextField(verbose_name='글 제목')
-    link = models.TextField(verbose_name='글 링크')
+    name = models.CharField(max_length=120, verbose_name='글 제목')
+    link = models.URLField(verbose_name='글 링크')
     summary = models.TextField(blank=True, null=True, verbose_name='글 요약')
     will_summary = models.BooleanField(verbose_name='글 요약할 것인지')
     rate = models.IntegerField(choices=_RATING, blank=True, null=True, verbose_name='점수')
@@ -37,7 +37,7 @@ class Article(models.Model):
 
 
 class Tag(models.Model):
-    name = models.TextField(verbose_name='태그 이름')
+    name = models.CharField(max_length=120, verbose_name='태그 이름')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='태그 생성 시점')
 
     class Meta:
