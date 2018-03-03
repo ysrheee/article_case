@@ -8,8 +8,10 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 @csrf_exempt
 # @require_http_methods(["POST"])
-def signup(request):
-    data = {'result': 'fail'}
+def articles(request):
+    data = {'res': 'end'}
+    return JsonResponse(data)
 
-    data['result'] = 'success'
+def create_article(request):
+    data = {'res': 'end2'}
     return JsonResponse(data)
