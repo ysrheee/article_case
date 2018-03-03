@@ -1,5 +1,5 @@
 # DB Access 하는 Method
-from article.models import Tag, Article
+from article.models import Tag, Article, ArticleHasTag
 from article.utils import *
 from user.models import Profile
 
@@ -13,7 +13,21 @@ def get_articles(request: HttpRequest):
         profile=profile,
         enable=True
     ).order_by('-created_at')
+    return articles
+
+
+def get_articles_to_map_list(request: HttpRequest):
+    articles = get_articles(request)
     return list(map(article_object_to_dic, articles))
+
+
+#TODO: List(Article-Tags) 불러오는 메소드 구현해야 함
+def get_articles_with_tags(request: HttpRequest):
+    articles = get_articles(request)
+    articles_with_tags = ArticleHasTag.objects.filter(
+        article=articles
+    )
+
 
 
 def create_article(request: HttpRequest):
@@ -36,9 +50,3 @@ def create_tag(request: HttpRequest):
     )
     tag.save()
 
-
-"""
-def get_articles():
-
-def get_tags():
-"""
