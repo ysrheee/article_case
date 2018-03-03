@@ -20,6 +20,7 @@ from .views import rendering_to_articlebox
 
 urlpatterns = [
     path('user/', include('user.urls')),
+    path('article/', include('article.urls')),
     path('admin/', admin.site.urls),
     path('', rendering_to_articlebox, name='view_articlebox'),
 ]
