@@ -29,11 +29,14 @@ class Article(models.Model):
     enable = models.BooleanField(default=True, verbose_name='삭제 여부')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성 시점')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='수정 시점')
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = '글 및 글 요약'
         verbose_name_plural = '글 및 글 요약'
+
+    def __str__(self):
+        return self.name
 
 
 class Tag(models.Model):
@@ -44,10 +47,13 @@ class Tag(models.Model):
         verbose_name = '태그'
         verbose_name_plural = '태그'
 
+    def __str__(self):
+        return self.name
+
 
 class ArticleHasTag(models.Model):
-    tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    article_id = models.ForeignKey(Article, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = '테이블 연결: Article, Tag'

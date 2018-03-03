@@ -12,7 +12,7 @@ class ArticleAdmin(admin.ModelAdmin):
         ArticleHasTagInline
     ]
 
-    list_display = ('id', 'name', 'link', 'summary', 'will_summary', 'rate', 'user_id')
+    list_display = ('id', 'name', 'link', 'summary', 'will_summary', 'rate', 'profile')
 
 
 admin.site.register(Article, ArticleAdmin)
@@ -23,3 +23,10 @@ class TagAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Tag, TagAdmin)
+
+
+class ArticleHasTagAdmin(admin.ModelAdmin):
+    list_display = ('tag', 'article')
+
+
+admin.site.register(ArticleHasTag, ArticleHasTagAdmin)

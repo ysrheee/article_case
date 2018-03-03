@@ -1,11 +1,16 @@
 # DB Access 하는 Method
-from article.models import Article, Tag
+from article.models import Tag, Article
 from article.utils import *
+from user.models import Profile
 
 
 def get_articles(request: HttpRequest):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    if not profile:
+        return False
     articles = Article.objects.filter(
-        user_id=request.POST.get('user_id'),
+        profile=profile,
         enable=True
     ).order_by('-created_at')
     return list(map(article_object_to_dic, articles))
@@ -19,7 +24,7 @@ def create_article(request: HttpRequest):
         summary=params.get('summary'),
         will_summary=params.get('will_summary'),
         rate=params.get('rate'),
-        user_id=params.get('user_id')
+        profile=params.get('profile')
     )
     article.save()
 

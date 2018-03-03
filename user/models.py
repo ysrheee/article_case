@@ -11,6 +11,9 @@ class Profile(models.Model):
         verbose_name = '유저 프로필'
         verbose_name_plural = '유저 프로필'
 
+    def __str__(self):
+        return self.user.username
+
 
 
 #class ProfileHasTag(models.Model):

@@ -8,16 +8,17 @@ from article.helper import get_articles, create_article, create_tag
 
 @csrf_exempt
 # @require_http_methods(["POST"])
-def get_articles(request):
+def articles_get(request):
     try:
         articles = get_articles(request)
-        return JsonResponse(articles)
-    except:
+        return JsonResponse(articles, safe=False)
+    except Exception as e:
+        print(e)
         data = {'result': 'fail'}
         return JsonResponse(data)
 
 
-def create_article(request):
+def article_create(request):
     data = {'result': 'success'}
     try:
         create_article(request)
@@ -27,7 +28,7 @@ def create_article(request):
         return JsonResponse(data)
 
 
-def create_tag(request):
+def tag_create(request):
     data = {'result': 'success'}
     try:
         create_tag(request)

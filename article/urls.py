@@ -2,11 +2,11 @@
 
 
 from django.urls import include, path
-from article.api.web import get_articles, create_article, create_tag
+from article.api.web import *
 
 
 urlpatterns = [
-    path('', get_articles),
-    path('create/', create_article),
-    path('tag/create/', create_tag)
+    path('', articles_get),
+    path('create/', article_create),
+    path('tag/create/', tag_create)
 ]

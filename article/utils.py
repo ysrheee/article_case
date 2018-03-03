@@ -5,7 +5,7 @@ from article.models import Article
 
 def article_request_to_dic(request: HttpRequest) -> Dict:
     params = {}
-    keys = ['name', 'link', 'summary', 'will_summary', 'rate', 'user_id']
+    keys = ['name', 'link', 'summary', 'will_summary', 'rate', 'profile']
     for key in keys:
         item = request.POST.get(key)
         if item:
@@ -32,7 +32,6 @@ def article_object_to_dic(articles: Article):
         'will_summary': articles.will_summary,
         'rate': articles.rate,
         'created_at': articles.created_at,
-        'updated_at': articles.updated_at,
-        'user_id': articles.user_id
+        'updated_at': articles.updated_at
     }
 
