@@ -1,1 +1,85 @@
-Hi
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Article Box</title>
+</head>
+<body>
+    <div id="app">
+            <div class="header">
+                    <div>
+                        <nav class="navbar navbar-expand-lg navbar-light navbar_custom">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarToggler">
+                            <a class="navbar-brand" ng-click="goReview()">
+                                <img src="/static/images/icon_logo_square.png" alt="">
+                            </a>
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                <li class="nav-item" id="user">
+                                    <router-link class="nav-link" to="/">김병묵</router-link>
+                                </li>
+                                <li class="nav-item" id="article">
+                                    <router-link class="nav-link" to="/article">내 기사</router-link>
+                                </li>
+                                <li class="nav-item" id="mypage">
+                                    <router-link class="nav-link" to="/mypage">내 정보</router-link>
+                                </li>
+                                <!--
+                                    <li class="nav-item" id="voc">
+                                        <router-link class="nav-link" to="/voc">개발자에게 조언</router-link>
+                                    </li>
+                                -->
+                            </ul>
+                            </div>
+                        </nav>
+                    </div>
+            </div>
+
+            <h1>${ message }</h1>
+            <router-view></router-view>
+    </div>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <script>
+    const Intro= { template: '<div>intro</div>' }
+    const Article = { template: '<div>article</div>' }
+    const ArticleWrite = { template: '<div>article write</div>' }
+    const Mypage = { template: '<div>mypage</div>' }
+
+    const routes = [
+        { path: '/', component: Intro },
+        { path: '/article', component: Article },
+        { path: '/article/write', component: ArticleWrite },
+        { path: '/mypage', component: Mypage }
+    ]
+
+    const router = new VueRouter({
+        routes,
+        mode: 'history'
+    })
+    
+    const app = new Vue({
+        router,
+        el: '#app',
+        delimiters: ['${', '}'], //django와 연동하기 위해 interpolation delimiters 변경
+        data: {
+            message: '안녕하세요 Vue!'
+        }
+    }).$mount('#app')
+
+    </script>
+</body>
+
+
+</html>
+
