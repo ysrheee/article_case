@@ -21,15 +21,6 @@ def get_articles_to_map_list(request: HttpRequest):
     return list(map(article_object_to_dic, articles))
 
 
-#TODO: List(Article-Tags) 불러오는 메소드 구현해야 함
-def get_articles_with_tags(request: HttpRequest):
-    articles = get_articles(request)
-    articles_with_tags = ArticleHasTag.objects.filter(
-        article=articles
-    )
-
-
-
 def create_article(request: HttpRequest):
     params = article_request_to_dic(request)
     article = Article.objects.create(

@@ -1,6 +1,9 @@
+import json
+
+from django.core import serializers
 from django.http.request import HttpRequest
 from typing import Dict, List
-from article.models import Article
+from article.models import Article, ArticleHasTag
 
 
 def article_request_to_dic(request: HttpRequest) -> Dict:
@@ -23,15 +26,32 @@ def tag_request_to_dic(request: HttpRequest) -> Dict:
     return params
 
 
-def article_object_to_dic(articles: Article):
+def article_object_to_dic(article: Article):
     return {
-        'id': articles.id,
-        'name': articles.name,
-        'link': articles.link,
-        'summary': articles.summary,
-        'will_summary': articles.will_summary,
-        'rate': articles.rate,
-        'created_at': articles.created_at,
-        'updated_at': articles.updated_at
+        'id': article.id,
+        'name': article.name,
+        'link': article.link,
+        'summary': article.summary,
+        'will_summary': article.will_summary,
+        'rate': article.rate,
+        'created_at': article.created_at,
+        'updated_at': article.updated_at
     }
 
+
+def article_object_to_dic(article: Article):
+    tags = ArticleHasTag.objects.filter(
+        article=article
+    ).values_list('tag__name', flat=True)
+
+    return {
+        'id': article.id,
+        'name': article.name,
+        'link': article.link,
+        'summary': article.summary,
+        'will_summary': article.will_summary,
+        'rate': article.rate,
+        'created_at': article.created_at,
+        'updated_at': article.updated_at,
+        'tags': list(tags)
+    }
