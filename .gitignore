@@ -93,3 +93,4 @@ db.sqlite3
 article_case/bin/
 .idea/
 venv/
+node_modules/

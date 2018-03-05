@@ -49,33 +49,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+    <script src="/static/dist/articlebox.bundle.js"></script>
 
     <script>
-    const Intro= { template: '<div>intro</div>' }
-    const Article = { template: '<div>article</div>' }
-    const ArticleWrite = { template: '<div>article write</div>' }
-    const Mypage = { template: '<div>mypage</div>' }
-
-    const routes = [
-        { path: '/', component: Intro },
-        { path: '/article', component: Article },
-        { path: '/article/write', component: ArticleWrite },
-        { path: '/mypage', component: Mypage }
-    ]
-
-    const router = new VueRouter({
-        routes,
-        mode: 'history'
-    })
     
-    const app = new Vue({
-        router,
-        el: '#app',
-        delimiters: ['${', '}'], //django와 연동하기 위해 interpolation delimiters 변경
-        data: {
-            message: '안녕하세요 Vue!'
-        }
-    }).$mount('#app')
 
     </script>
 </body>
