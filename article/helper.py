@@ -4,6 +4,10 @@ from article.utils import *
 from user.models import Profile
 
 
+def get_article(request: HttpRequest):
+    return Article.object.get(id=request.id)
+
+
 def get_articles(request: HttpRequest):
     user = request.user
     profile = Profile.objects.get(user=user)
@@ -19,6 +23,14 @@ def get_articles(request: HttpRequest):
 def get_articles_to_map_list(request: HttpRequest):
     articles = get_articles(request)
     return list(map(article_object_to_dic, articles))
+
+
+def get_tags_in_article(request: HttpRequest):
+    article = get_articles(request)
+    tags = ArticleHasTag.objects.filter(
+        article=article
+    ).values_list('tag__name', flat=True)
+    return tags
 
 
 def get_all_tags(request: HttpRequest):

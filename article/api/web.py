@@ -37,12 +37,22 @@ def article_create(request):
 def all_tags_used_get(request):
     try:
         tags = get_all_tags(request)
-        print(tags)
         return JsonResponse(tags, safe=False)
     except Exception as e:
         print(e)
         data = {'result': 'fail'}
         return JsonResponse(data)
+
+
+def tags_in_article_get(request):
+    try:
+        tags = get_tags_in_article(request)
+        return JsonResponse(tags, safe=False)
+    except Exception as e:
+        print(e)
+        data = {'result': 'fail'}
+        return JsonResponse(data)
+
 
 @csrf_exempt
 # @require_http_methods(["POST"])

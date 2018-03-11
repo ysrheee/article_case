@@ -53,7 +53,6 @@ def tag_object_from_article(article: Article):
 
 def append_all_lists(lists):
     fin_list = []
-    print(lists)
     for li in lists:
         for l in li:
             fin_list.append(l)
