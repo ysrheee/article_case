@@ -1,5 +1,5 @@
 # DB Access 하는 Method
-from article.models import Tag, Article, ArticleHasTag
+from article.models import *
 from article.utils import *
 from user.models import Profile
 
@@ -21,6 +21,12 @@ def get_articles_to_map_list(request: HttpRequest):
     return list(map(article_object_to_dic, articles))
 
 
+def get_all_tags(request: HttpRequest):
+    articles = get_articles(request)
+    tag_lists = map(tag_object_from_article, articles)
+    return append_all_lists(tag_lists)
+
+
 def create_article(request: HttpRequest):
     params = article_request_to_dic(request)
     article = Article.objects.create(
@@ -40,4 +46,3 @@ def create_tag(request: HttpRequest):
         name=params.get('name')
     )
     tag.save()
-
