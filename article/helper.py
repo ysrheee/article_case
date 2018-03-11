@@ -1,9 +1,9 @@
 # DB Access 하는 Method
-from article.models import *
 from article.utils import *
 from user.models import Profile
 
 
+# TODO: Client에서 Article Id를 어떻게 받아오는지를 알아야 함.
 def get_article(request: HttpRequest):
     return Article.object.get(id=request.id)
 
