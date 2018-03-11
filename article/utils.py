@@ -7,7 +7,7 @@ from article.models import Article, ArticleHasTag, Tag
 
 def article_request_to_dic(request: HttpRequest) -> Dict:
     params = {}
-    keys = ['name', 'link', 'summary', 'will_summary', 'rate', 'profile']
+    keys = ['name', 'link', 'summary', 'will_summary', 'rate', 'profile', 'tags']
     for key in keys:
         item = request.POST.get(key)
         if item:

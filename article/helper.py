@@ -50,11 +50,21 @@ def create_article(request: HttpRequest):
         profile=params.get('profile')
     )
     article.save()
+    tags = params.get('tags')
+    for tag in tags:
+        tag_new = Tag.object.get_or_create(
+            name=tag
+        )
+        tag_new.save()
+        article_has_tag = ArticleHasTag.object.create(
+            article=article, tag=tag_new
+        )
+        article_has_tag.save()
 
 
 def create_tag(request: HttpRequest):
     params = tag_request_to_dic(request)
-    tag = Tag.objects.create(
+    tag = Tag.objects.get_or_create(
         name=params.get('name')
     )
     tag.save()
