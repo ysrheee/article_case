@@ -1,45 +1,52 @@
-import Intro from './../apps/main/main.vue'
-//const Intro= { template: '<div>intro</div>' }
+var baseApp;
 
-const Article = {
-    template: `
-    <div class="article">
-        <h2>Article</h2>
-        <router-view></router-view>
-        </div>
-        `
-    }
-const ArticleList = { template: '<div>article list</div>' }
-const ArticleWrite = { template: '<div>article write</div>' }
-const Mypage = { template: '<div>mypage</div>' }
+baseApp = angular.module("baseApp", ['ui.router']);
 
-const routes = [
-    { path: '/', component: Intro },
-    { path: '/mypage', component: Mypage },
-    { path: '/article', component: Article,
-        children: [
-            {
-                path: 'write',
-                component: ArticleWrite
-            },
-            {
-                path: '',
-                component: ArticleList
-            }
-        ]
-    }
-]
+baseApp.config(function($interpolateProvider, $sceProvider, $httpProvider) {
+  $interpolateProvider.startSymbol("{$");
+  return $interpolateProvider.endSymbol("$}");
+});
 
-const router = new VueRouter({
-    routes,
-    mode: 'history'
-})
+baseApp.controller("BaseCtrl", [
+  "$scope", "$rootScope", "$http", function($scope, $rootScope, $http) {
+    "list에 해당 value가 있는지 체크하는 함수";
+    return $scope.containsValue = function(obj, list) {
+      var i;
+      i = 0;
+      while (i < list.length) {
+        if (list[i] === obj) {
+          return true;
+        }
+        i++;
+      }
+      return false;
+    };
+  }
+]);
 
-const app = new Vue({
-    router,
-    el: '#app',
-    delimiters: ['${', '}'], //django와 연동하기 위해 interpolation delimiters 변경
-    data: {
-        message: 'Article Box입니다!'
-    }
-}).$mount('#app')
+window.getParameterByName = function(name) {
+  var regex, results, url;
+  url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+  results = regex.exec(url);
+  if (results === null) {
+    return null;
+  }
+  if (results[2] === null) {
+    return '';
+  }
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+};
+
+window.notMobile = function() {
+  if ($(window).width() < 992) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+
+
+

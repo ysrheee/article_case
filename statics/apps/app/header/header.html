@@ -1,0 +1,30 @@
+<div class="header">
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light navbar_custom">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                <a class="navbar-brand" ng-click="goReview()">
+                    <img src="/static/images/icon_logo_square.png" alt="">
+                </a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item" id="user">
+                        <a class="nav-link" ng-click="goMain()">김병묵</a>
+                    </li>
+                    <li class="nav-item" id="article">
+                        <a class="nav-link" ng-click="goArticle()">내 기사</a>
+                    </li>
+                    <li class="nav-item" id="mypage">
+                        <a class="nav-link" ng-click="goMypage()">내 정보</a>
+                    </li>
+                    <!--
+                        <li class="nav-item" id="voc">
+                            <router-link class="nav-link" to="/voc">개발자에게 조언</router-link>
+                        </li>
+                    -->
+                </ul>
+                </div>
+            </nav>
+        </div>
+</div>
