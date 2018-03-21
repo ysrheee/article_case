@@ -14,9 +14,12 @@
             ($scope, $element, req2Svr, $state, $rootScope, $tiemout) ->
                 req2Svr = req2Svr 'article'
 
+                $scope.article = 
+                    name: ""
+                    link: ""
+
                 $scope.submit = () ->
-                    console.log "hi"
-                    req2Svr.createArticle().then ((response) ->
+                    req2Svr.createArticle($scope.article).then ((response) ->
                         console.log response
                         ), (error) ->
                             console.log error

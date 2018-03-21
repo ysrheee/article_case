@@ -8,10 +8,11 @@
                 '$http'
                 ($http) ->
                     {
-                        createArticle: () ->
+                        createArticle: (article) ->
                             payload =
-                                title: ''
-                                url: ''
+                                name: article.name
+                                link: article.link
+                            console.log payload
                             $http(
                                 method: 'POST'
                                 url: '/api/article/create'
