@@ -33,6 +33,7 @@ return: success or fail
 @csrf_exempt
 # @require_http_methods(["POST"])
 def article_create(request):
+    request = body_to_querydict(request)
     data = {'result': 'success'}
     try:
         create_article(request)
