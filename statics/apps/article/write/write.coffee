@@ -17,6 +17,8 @@
                 $scope.article = 
                     name: ""
                     link: ""
+                    willSummary: false
+                    rate: ""
 
                 $scope.submit = () ->
                     req2Svr.createArticle($scope.article).then ((response) ->

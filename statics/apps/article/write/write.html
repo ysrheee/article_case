@@ -9,7 +9,17 @@
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="링크를 입력해주세요" ng-model="article.link">
             </div>          
-        </div>
+    </div>
+    <div class="row">
+        다시 읽고 싶은 만큼 점수를 매겨주세요!
+        <select class="custom-select" ng-model="article.rate">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
     <div class="row">
         <button type="button" class="btn btn-success btn-block"
                 ng-click="submit();">

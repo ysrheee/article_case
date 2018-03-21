@@ -12,6 +12,9 @@
                             payload =
                                 name: article.name
                                 link: article.link
+                                will_summary: article.willSummary
+                                rate: article.rate
+                                
                             console.log payload
                             $http(
                                 method: 'POST'
