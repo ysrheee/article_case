@@ -5,7 +5,6 @@ from user.models import Profile
 # Create your models here.
 
 class Article(models.Model):
-    ZERO = 0
     ONE = 1
     TWO = 2
     THREE = 3
@@ -13,7 +12,6 @@ class Article(models.Model):
     FIVE = 5
 
     _RATING = (
-        (ZERO, '0점'),
         (ONE, '1점'),
         (TWO, '2점'),
         (THREE, '3점'),
@@ -25,7 +23,7 @@ class Article(models.Model):
     link = models.URLField(verbose_name='글 링크')
     summary = models.TextField(blank=True, null=True, verbose_name='글 요약')
     will_summary = models.BooleanField(verbose_name='글 요약할 것인지')
-    rate = models.IntegerField(choices=_RATING, blank=True, null=True, verbose_name='점수')
+    rate = models.IntegerField(choices=_RATING, verbose_name='점수')
     enable = models.BooleanField(default=True, verbose_name='삭제 여부')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성 시점')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='수정 시점')

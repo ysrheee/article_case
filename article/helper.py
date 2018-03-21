@@ -40,6 +40,7 @@ def get_all_tags(request: HttpRequest):
 
 
 def create_article(request: HttpRequest):
+    print(request.user.username)
     params = article_request_to_dic(request)
     article = Article.objects.create(
         name=params.get('name'),
