@@ -3,6 +3,7 @@
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
 from article.helper import *
 
 """
@@ -87,10 +88,12 @@ return: success or fail
 @csrf_exempt
 # @require_http_methods(["POST"])
 def tag_create(request):
+    request = body_to_querydict(request)
     data = {'result': 'success'}
     try:
         create_tag(request)
         return JsonResponse(data)
-    except:
+    except Exception as e:
+        print(e)
         data['result'] = 'fail'
         return JsonResponse(data)

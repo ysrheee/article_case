@@ -42,7 +42,6 @@ def get_all_tags(request: HttpRequest):
 def create_article(request: HttpRequest):
     profile = Profile.objects.get(user=request.user)
     params = article_request_to_dic(request)
-    print(params)
     article = Article.objects.create(
         name=params.get('name'),
         link=params.get('link'),
