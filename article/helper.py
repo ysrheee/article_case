@@ -8,6 +8,7 @@ def get_article(request: HttpRequest):
     return Article.object.get(id=request.id)
 
 
+# Works
 def get_articles(request: HttpRequest):
     user = request.user
     profile = Profile.objects.get(user=user)
@@ -20,11 +21,13 @@ def get_articles(request: HttpRequest):
     return articles
 
 
+# Works
 def get_articles_to_map_list(request: HttpRequest):
     articles = get_articles(request)
     return list(map(article_object_to_dic, articles))
 
 
+# Works?
 def get_tags_in_article(request: HttpRequest):
     article = get_articles(request)
     tags = ArticleHasTag.objects.filter(
@@ -39,6 +42,7 @@ def get_all_tags(request: HttpRequest):
     return append_all_lists(tag_lists)
 
 
+# Works
 def create_article(request: HttpRequest):
     profile = Profile.objects.get(user=request.user)
     params = article_request_to_dic(request)
@@ -63,9 +67,10 @@ def create_article(request: HttpRequest):
         article_has_tag.save()
 
 
+# Works
 def create_tag(request: HttpRequest):
     params = tag_request_to_dic(request)
-    tag = Tag.objects.get_or_create(
+    tag, created = Tag.objects.get_or_create(
         name=params.get('name')
     )
     tag.save()
