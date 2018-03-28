@@ -4,8 +4,10 @@ from user.models import Profile
 
 
 # TODO: Client에서 Article Id를 어떻게 받아오는지를 알아야 함.
+# Works
 def get_article(request: HttpRequest):
-    return Article.object.get(id=request.id)
+    return Article.objects.get(id=request.id)
+    # return Article.objects.get(id=1)
 
 
 # Works
@@ -29,11 +31,11 @@ def get_articles_to_map_list(request: HttpRequest):
 
 # Works?
 def get_tags_in_article(request: HttpRequest):
-    article = get_articles(request)
+    article = get_article(request)
     tags = ArticleHasTag.objects.filter(
         article=article
     ).values_list('tag__name', flat=True)
-    return tags
+    return list(tags)
 
 
 def get_all_tags(request: HttpRequest):
@@ -43,6 +45,7 @@ def get_all_tags(request: HttpRequest):
 
 
 # Works
+# TODO: params['tags'] = ['창조과학', '창업'] 넣어서 tag랑 같이 저장되는지 테스트
 def create_article(request: HttpRequest):
     profile = Profile.objects.get(user=request.user)
     params = article_request_to_dic(request)
