@@ -18,7 +18,10 @@ from django.urls import path, include, re_path
 from .views import rendering_to_articlebox
 
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
 urlpatterns = [
+    path('', include('social_django.urls', namespace='social')),
     path('api/user/', include('user.urls')),
     path('api/article/', include('article.urls')),
     path('admin/', admin.site.urls),

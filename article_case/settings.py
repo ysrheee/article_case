@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
-    'article'
+    'article',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,12 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+
+# FACEBOOK
+SOCIAL_AUTH_FACEBOOK_KEY = "1884000308285283"
+SOCIAL_AUTH_FACEBOOK_SECRET = "3d7faba380d45fd30a219b0580d48188"
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'fields': 'id, name, email'
+}
