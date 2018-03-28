@@ -12,4 +12,8 @@ require('./article/article');
 require('./article/req2Svr');
 require('./article/article-routing');
 require('./article/write/write');
+require('./article/list/list');
+
+
+require('./intro/intro');
 

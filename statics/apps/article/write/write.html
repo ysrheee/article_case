@@ -1,29 +1,37 @@
-<div>
+<div class="articleWirte container">
+        <a href="{% url "social:begin" "facebook" %}"><button class="btn btn-primary" style="width: 40%">FB Login</button></a>
     <count-bar></count-bar>
-    <div class="row">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="제목을 입력해주세요" ng-model="article.name">
-        </div>          
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="제목을 입력해주세요" ng-model="article.name">
+    </div>          
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="링크를 입력해주세요" ng-model="article.link">
+    </div>      
+    <div class="input-group mb-3">
+        <button type="button" class="btn btn-block"
+            ng-click="article.willSummary=!article.willSummary"
+            ng-class="{'btn-success':!article.willSummary,
+                       'btn-secondary':article.willSummary}">
+                       <span ng-hide="article.willSummary">정리해보고 싶은 기사인가요?</span>
+                       <span ng-show="article.willSummary">네! 요약해보고 싶어요!</span>
+        </button>    
     </div>
-    <div class="row">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="링크를 입력해주세요" ng-model="article.link">
-            </div>          
+    
+    <div class="input-group mb-3">
+        <textarea class="articleWrite__summary form-control"
+                  ng-modle="article.summary"
+                  ng-show="article.willSummary"
+                  placeholder="기사를 정리해볼까요? 3줄 요약은 어떤가요?"></textarea>
     </div>
-    <div class="row">
-        다시 읽고 싶은 만큼 점수를 매겨주세요!
-        <select class="custom-select" ng-model="article.rate">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-    </div>
-    <div class="row">
-        <button type="button" class="btn btn-success btn-block"
-                ng-click="submit();">
-            업로드!
-        </button>
-    </div>
+    
+    다시 읽고 싶은 만큼 점수를 매겨주세요!
+    <button class="articleWirte_rateButton">1</button>
+    <button class="articleWirte_rateButton">2</button>
+    <button class="articleWirte_rateButton">3</button>
+    <button class="articleWirte_rateButton">4</button>
+    <button class="articleWirte_rateButton">5</button>
+    <button type="button" class="btn btn-success btn-block"
+            ng-click="submit();">
+        업로드!
+    </button>
 </div>

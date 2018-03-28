@@ -1,9 +1,9 @@
 ((window, jQuery, angular) ->
     module = angular.module 'baseApp'
 
-    module.directive 'articleWrite', () ->
+    module.directive 'articleList', () ->
         scope = {}
-        templateUrl = '/static/apps/article/write/write.html'
+        templateUrl = '/static/apps/article/list/list.html'
         controller = [
             '$scope'
             '$element'
@@ -14,18 +14,7 @@
             ($scope, $element, req2Svr, $state, $rootScope, $tiemout) ->
                 req2Svr = req2Svr 'article'
 
-                $scope.article = 
-                    name: ""
-                    link: ""
-                    willSummary: false
-                    summary: ""
-                    rate: ""
-
-                $scope.submit = () ->
-                    req2Svr.createArticle($scope.article).then ((response) ->
-                        console.log response
-                        ), (error) ->
-                            console.log error
+                
 
 
         ]
