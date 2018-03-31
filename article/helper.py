@@ -79,7 +79,7 @@ def create_tag(request: HttpRequest):
     tag.save()
 
 
-#
+# Works
 def count_article(request: HttpRequest):
     articles = get_articles(request)
     return len(articles)
