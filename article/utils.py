@@ -52,7 +52,7 @@ def tag_object_from_article(article: Article):
         article=article
     ).values_list('tag__name', flat=True)
 
-    return list(set(t))
+    return list(tags)
 
 
 def append_all_lists(lists):

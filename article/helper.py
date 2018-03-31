@@ -41,7 +41,7 @@ def get_tags_in_article(request: HttpRequest):
 def get_all_tags(request: HttpRequest):
     articles = get_articles(request)
     tag_lists = map(tag_object_from_article, articles)
-    return append_all_lists(tag_lists)
+    return list(set(append_all_lists(tag_lists)))
 
 
 # Works
