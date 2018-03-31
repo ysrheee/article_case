@@ -44,6 +44,9 @@
                             console.log error
 
                 $scope.createNewTag = () ->
+                    if $scope.article.tags.indexOf($scope.newTag) != -1
+                        alert "이미 추가된 태그입니다."
+                        return
                     req2Svr.createTag($scope.newTag).then ((response) ->
                         $scope.article.tags.push $scope.newTag
                         console.log response
