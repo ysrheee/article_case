@@ -19,7 +19,7 @@
     
     <div class="input-group mb-3">
         <textarea class="articleWrite__summary form-control"
-                  ng-modle="article.summary"
+                  ng-model="article.summary"
                   ng-show="article.willSummary"
                   placeholder="기사를 정리해볼까요? 3줄 요약은 어떤가요?"></textarea>
     </div>
@@ -75,12 +75,10 @@
 
     <div class="articleWirte__rateWrapper">
             <h2 class="articleWirte__rateTitle">다시 읽고 싶은 만큼 점수를 매겨주세요!</h2>
-            <button class="articleWirte_rateButton">1</button>
-            <button class="articleWirte_rateButton">2</button>
-            <button class="articleWirte_rateButton">3</button>
-            <button class="articleWirte_rateButton">4</button>
-            <button class="articleWirte_rateButton">5</button>
-
+            <button class="articleWirte__rateButton" 
+                    ng-repeat="rate in rateList"
+                    ng-class="{'selected':article.rate == rate}" 
+                    ng-click="article.rate=rate;">{$ rate $}</button>
     </div>
     
    

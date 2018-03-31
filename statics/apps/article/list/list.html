@@ -1,3 +1,29 @@
-<div>
+<div class="articleList"
+     ng-init="init();">
     Artilce List
+    <button class="btn btn-block btn-success"
+            ui-sref="article.write">
+        새 기사를 모으고 싶어요!
+    </button>
+
+    <div class="articleList__itemWrapper"
+            ng-repeat="article in user.articles">
+        <div>
+            <span class="articleList__itemRateBadge">{$ article.rate $}</span>
+            <h2 class="articleList__itemTitle">{$ article.name $}</h2>
+        </div>
+        <div ng-show="article.willSummary">
+            <p>
+                {$ article.summary $}
+            </p>
+        </div>
+        <div>
+                {$ article.tags $}
+                <a href="{$ article.link $}"
+                   target="_blank">
+                    link
+                </a>
+
+        </div>
+    </div>
 </div>

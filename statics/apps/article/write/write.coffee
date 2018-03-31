@@ -25,6 +25,8 @@
                     tags: []
                     rate: ""
 
+                $scope.rateList = [1, 2, 3, 4, 5]
+
                 $scope.init = () ->
                     $scope.getTagsUsed()
                     
@@ -32,6 +34,8 @@
                 $scope.submit = () ->
                     req2Svr.createArticle($scope.article).then ((response) ->
                         console.log response
+                        alert "업로드 완료되었습니다."
+                        $state.go "article.list"
                         ), (error) ->
                             console.log error
 
