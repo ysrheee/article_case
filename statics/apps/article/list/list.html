@@ -1,6 +1,5 @@
 <div class="articleList"
      ng-init="init();">
-    Artilce List
     <button class="btn btn-block btn-success"
             ui-sref="article.write">
         새 기사를 모으고 싶어요!
@@ -13,13 +12,21 @@
             <h2 class="articleList__itemTitle">{$ article.name $}</h2>
         </div>
         <div ng-show="article.willSummary">
-            <p>
+            <p class="articleList__summary">
                 {$ article.summary $}
             </p>
         </div>
-        <div>
-                {$ article.tags $}
-                <a href="{$ article.link $}"
+        <div class="articleList__bottomWrapper">   
+            <p class="articleList__tagWrapper">
+                    <span class="articleList__tag"
+                    ng-repeat="tag in article.tags">
+                    {$ tag $}
+              </span>
+
+            </p>
+            
+                <a class="articleList__link"
+                   href="{$ article.link $}"
                    target="_blank">
                     link
                 </a>

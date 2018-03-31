@@ -53,6 +53,7 @@
                         return
                     req2Svr.createTag($scope.newTag).then ((response) ->
                         $scope.article.tags.push $scope.newTag
+                        $scope.newTag = ""
                         console.log response
                         ), (error) ->
                             console.log error
