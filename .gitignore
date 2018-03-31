@@ -95,3 +95,4 @@ article_case/bin/
 venv/
 node_modules/
 myvenv/
+static/

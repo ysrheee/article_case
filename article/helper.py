@@ -58,13 +58,15 @@ def create_article(request: HttpRequest):
         profile=profile
     )
     article.save()
-    tags = params.get('tags')
+    tags = params.get('tags').split(",")
     for tag in tags:
-        tag_new = Tag.object.get_or_create(
+        print(tag)
+        tag_new, created = Tag.objects.get_or_create(
             name=tag
         )
-        tag_new.save()
-        article_has_tag = ArticleHasTag.object.create(
+        if created:
+            tag_new.save()
+        article_has_tag = ArticleHasTag.objects.create(
             article=article, tag=tag_new
         )
         article_has_tag.save()
