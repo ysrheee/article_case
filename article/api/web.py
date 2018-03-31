@@ -97,3 +97,22 @@ def tag_create(request):
         print(e)
         data['result'] = 'fail'
         return JsonResponse(data)
+
+
+"""
+input: user info
+return: number of articles uploaded by user
+"""
+
+
+@csrf_exempt
+# @require_http_methods(["POST"])
+def article_count(request):
+    request = body_to_querydict(request)
+    try:
+        article_counts = count_article(request)
+        return JsonResponse(article_counts, safe=False)
+    except Exception as e:
+        print(e)
+        data = {'result': 'fail'}
+        return JsonResponse(data)

@@ -79,3 +79,9 @@ def create_tag(request: HttpRequest):
         name=params.get('name')
     )
     tag.save()
+
+
+# Works
+def count_article(request: HttpRequest):
+    articles = get_articles(request)
+    return len(articles)
