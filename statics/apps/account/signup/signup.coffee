@@ -20,7 +20,7 @@
                 $scope.signup = () ->
                     req2Svr.signup($scope.user).then ((response) ->
                         alert("가입이 완료되었습니다.")
-                        $state.go 'article.list'
+                        window.location.href = '/article'
                         ), (error) ->
                             console.log error
 
