@@ -44,6 +44,7 @@ def sign_up(request: HttpRequest):
         data['result'] = 'fail'
         return JsonResponse(data)
 
+
 @csrf_exempt
 @require_http_methods(["POST"])
 def log_in(request: HttpRequest):
@@ -56,6 +57,10 @@ def log_in(request: HttpRequest):
         password = request.POST.get('password')
 
         user = authenticate(request, username=email, password=password)
+
+        if user is None:
+            data['result'] = 'user not found'
+            return JsonResponse(data)
 
         auth_login(request, user)
 
