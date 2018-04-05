@@ -11,7 +11,7 @@
                         getArticles: () ->
                             $http(
                                 method: 'GET'
-                                url: '/api/article'
+                                url: '/api/article/list'
                             )
 
                         createArticle: (article) ->

@@ -6,7 +6,7 @@ from django.urls import path
 from article.api.web import *
 
 urlpatterns = [
-    path('', articles_get),
+    path('list', articles_get),
     path('create', article_create),
     path('count', article_count),
     path('tag/create', tag_create),

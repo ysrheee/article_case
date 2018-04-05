@@ -12,11 +12,10 @@
 
 
             $scope.goArticle = () => {
-                console.log("go article")
-                if ($state.current.name.indexOf("article") != -1)
+                if ($state.current.name == 'article.list')
                     $state.reload();
                 else
-                    $state.go('article');
+                    $state.go('article.list');
                 }
 
 

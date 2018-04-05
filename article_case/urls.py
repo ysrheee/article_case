@@ -21,11 +21,11 @@ from .views import rendering_to_articlebox
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 urlpatterns = [
-    path('', include('social_django.urls', namespace='social')),
+    #path('', include('social_django.urls', namespace='social')),
     path('api/user/', include('user.urls')),
     path('api/article/', include('article.urls')),
     path('admin/', admin.site.urls),
-    re_path(r'^index/', rendering_to_articlebox, name='view_articlebox'),
+    re_path(r'^', rendering_to_articlebox, name='view_articlebox'),
 ]
 
 
