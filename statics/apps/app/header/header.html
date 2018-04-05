@@ -6,14 +6,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item" id="user">
+                    <li class="nav-item" id="user" ng-hide="isAuthenticated">
                         <a class="nav-link" ng-click="goLogin()">로그인</a>
+                    </li>
+                    <li class="nav-item" id="user" ng-show="isAuthenticated">
+                        <a class="nav-link" ng-click="goLogin()">{$ user.email $}</a>
                     </li>
                     <li class="nav-item" id="article">
                         <a class="nav-link" ng-click="goArticle()">내 기사</a>
                     </li>
+                    <!--
                     <li class="nav-item" id="mypage">
                         <a class="nav-link" ng-click="goMypage()">내 정보</a>
+                    </li>
+                -->
+                    <li class="nav-item" id="user" ng-show="isAuthenticated">
+                            <a class="nav-link" ng-click="goLogout()">로그아웃</a>
                     </li>
                     <!--
                         <li class="nav-item" id="voc">
