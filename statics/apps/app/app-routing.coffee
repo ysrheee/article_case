@@ -15,6 +15,11 @@
                 url: '/mypage',
                 template: '<mypage></mypage>'
             }
+            .state 'account', {
+                url: '/account',
+                abstract: true,
+                template: '<account></account>'
+            }
             .state 'intro', {
                 url: '/',
                 template: '<intro></intro>'

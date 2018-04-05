@@ -15,5 +15,12 @@ require('./article/write/write');
 require('./article/list/list');
 
 
+require('./account/account');
+require('./account/req2Svr');
+require('./account/account-routing');
+require('./account/signup/signup');
+require('./account/login/login');
+
+
 require('./intro/intro');
 

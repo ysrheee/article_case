@@ -7,10 +7,16 @@
 		var templateUrl = '/static/apps/app/header/header.html';
         
 		var controller = ['$scope', '$state', '$element', ($scope, $state) => {
-            
 
 
+            $scope.goLogin = () => {
+                if ($state.current.name == 'account.login')
+                    $state.reload();
+                else
+                    $state.go('account.login');
+                }
 
+        
             $scope.goArticle = () => {
                 if ($state.current.name == 'article.list')
                     $state.reload();

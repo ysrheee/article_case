@@ -43,7 +43,8 @@ def sign_up(request: HttpRequest):
         data['result'] = 'fail'
         return JsonResponse(data)
 
-
+@csrf_exempt
+@require_http_methods(["POST"])
 def log_in(request: HttpRequest):
     data = {}
 

@@ -1,0 +1,20 @@
+<div class="accountLogin container"
+     ng-init="init();">
+    <count-bar></count-bar>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="아이디(이메일)를 입력해주세요." ng-model="user.email">
+    </div>          
+    <div class="input-group mb-3">
+        <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." ng-model="user.password">
+    </div>       
+   
+
+    <button type="button" class="btn btn-success btn-block"
+            ng-click="login();">
+        로그인하기
+    </button>
+    <a class="accountLogin__signupLink"
+        ui-sref="account.signup">
+        처음 방문하세요? <span>회원가입</span>
+    </a>
+</div>
