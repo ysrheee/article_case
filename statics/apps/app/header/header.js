@@ -1,12 +1,39 @@
 ((window, angular) => {
     const module = angular.module('baseApp');
+
+    module.provider('req2Svr', function() {
+        var map;
+        map = {};
+        this.register = function(name, func) {
+          map[name] = func;
+        };
+        this.$get = [
+          '$injector', function($injector) {
+            return function(name, paramObj) {
+              var func;
+              func = map[name];
+              if (!func) {
+                throw Error('Not Registered');
+              }
+              return $injector.invoke(func, void 0, paramObj);
+            };
+          }
+        ];
+      });
+      
+      module.config([
+        '$qProvider', function($qProvider) {
+          $qProvider.errorOnUnhandledRejections(false);
+        }
+    ]);
     
     module.directive('appHeader', () => {
         var scope = {};
 
 		var templateUrl = '/static/apps/app/header/header.html';
         
-		var controller = ['$scope', '$state', '$element', ($scope, $state) => {
+		var controller = ['$scope', '$state', '$element', 'req2Svr', ($scope, $state, $element, req2Svr) => {
+            req2Svr = req2Svr('account');
 
             $scope.user = {
                 email: userInfo.email
@@ -40,11 +67,14 @@
                 }
 
             $scope.goLogout = () => {
-                if ($state.current.name == 'account.login')
-                    $state.reload();
-                else
-                    $state.go('account.login');
-                }
+                req2Svr.logout().then((function(response) {
+                    window.location.href = '/';
+                  }), function(error) {
+                    return console.log(error);
+                  });
+
+            }
+
 
             
         }];
