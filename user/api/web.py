@@ -54,8 +54,9 @@ def log_in(request: HttpRequest):
         email = request.POST.get('email')
         password_raw = request.POST.get('password')
 
-        user = authenticate(email=email, password=password_raw)
 
+
+        user = authenticate(email=email, password=password_raw)
         auth_login(request, user)
 
         data['result'] = 'success'

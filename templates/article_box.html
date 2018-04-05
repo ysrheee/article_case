@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load user_tags %}
 <html>
 <head>
 
@@ -57,6 +58,13 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>
+        var userInfo = {
+            'email': '{{ request|get_profile:"email" }}'
+        };
+
+        var isAuthenticated = {% if request.user.is_authenticated %} true {% else %} false {% endif %};
     </script>
           
 </body>

@@ -30,6 +30,14 @@
                                 headers: 'Content-Type': 'application/json; charset=utf-8'
                             )
 
+                        logout: () ->
+                            $http(
+                                method: 'GET'
+                                url: '/api/user/logout'
+                            )
+
+                        
+
                         
                         
                         

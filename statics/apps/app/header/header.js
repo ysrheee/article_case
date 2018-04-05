@@ -8,6 +8,13 @@
         
 		var controller = ['$scope', '$state', '$element', ($scope, $state) => {
 
+            $scope.user = {
+                email: userInfo.email
+            }
+
+            $scope.isAuthenticated = isAuthenticated
+                
+
 
             $scope.goLogin = () => {
                 if ($state.current.name == 'account.login')
@@ -30,6 +37,13 @@
                     $state.reload();
                 else
                     $state.go('mypage');
+                }
+
+            $scope.goLogout = () => {
+                if ($state.current.name == 'account.login')
+                    $state.reload();
+                else
+                    $state.go('account.login');
                 }
 
             
