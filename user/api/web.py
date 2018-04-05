@@ -58,6 +58,10 @@ def log_in(request: HttpRequest):
 
         user = authenticate(request, username=email, password=password)
 
+        if user is None:
+            data['result'] = 'fail'
+            return JsonResponse(data)
+
         auth_login(request, user)
 
         data['result'] = 'success'
