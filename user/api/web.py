@@ -32,7 +32,7 @@ def sign_up(request: HttpRequest):
         profile = Profile(user=user)
         profile.save()
 
-        new_user = authenticate(username=user.username, password=user.password)
+        new_user = authenticate(request, username=email, password=password)
 
         auth_login(request, new_user)
 
