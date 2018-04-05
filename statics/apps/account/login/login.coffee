@@ -19,7 +19,7 @@
 
                 $scope.login = () ->
                     req2Svr.login($scope.user).then ((response) ->
-                        $state.go 'article.list'
+                        window.location.href = '/article'
                         ), (error) ->
                             console.log error
 
