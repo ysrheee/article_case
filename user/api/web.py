@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.http import HttpRequest, JsonResponse
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 
@@ -35,6 +37,7 @@ def sign_up(request: HttpRequest):
 
         data['result'] = 'success'
         return JsonResponse(data)
+
     except Exception as e:
         print(e)
         data['result'] = 'fail'
@@ -43,16 +46,26 @@ def sign_up(request: HttpRequest):
 
 def log_in(request: HttpRequest):
     data = {}
-    request = body_to_querydict(request)
 
-    email = request.POST.get('email')
-    password_raw = request.POST.get('password')
+    try:
+        request = body_to_querydict(request)
 
-    new_user = authenticate(email=email, password=password_raw)
+        email = request.POST.get('email')
+        password_raw = request.POST.get('password')
 
-    user = User(username=email)
-    auth_login(request, user)
+        user = authenticate(email=email, password=password_raw)
+
+        auth_login(request, user)
+
+        data['result'] = 'success'
+        return JsonResponse(data)
+
+    except Exception as e:
+        print(e)
+        data['result'] = 'fail'
+        return JsonResponse(data)
 
 
 def log_out(request: HttpRequest):
-    print("A")
+    auth_logout(request)
+    return redirect('/')
