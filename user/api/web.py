@@ -9,7 +9,7 @@ from django.views.decorators.http import require_http_methods
 
 from user.models import *
 from article.utils import body_to_querydict
-from user.utils import password_to_md5
+from user.utils import password_to_md5, authorize_user
 
 
 @csrf_exempt
@@ -29,7 +29,8 @@ def sign_up(request: HttpRequest):
         user.set_password(password)
         user.save()
 
-        profile = Profile(user=user)
+        key = authorize_user(user)
+        profile = Profile(user=user, key=key)
         profile.save()
 
         new_user = authenticate(request, username=email, password=password)
@@ -37,6 +38,7 @@ def sign_up(request: HttpRequest):
         auth_login(request, new_user)
 
         data['result'] = 'success'
+        data['key'] = key
         return JsonResponse(data)
 
     except Exception as e:
@@ -57,6 +59,7 @@ def log_in(request: HttpRequest):
         password = request.POST.get('password')
 
         user = authenticate(request, username=email, password=password)
+        key = authorize_user(user)
 
         if user is None:
             data['result'] = 'fail'
@@ -65,6 +68,7 @@ def log_in(request: HttpRequest):
         auth_login(request, user)
 
         data['result'] = 'success'
+        data['key'] = key
         return JsonResponse(data)
 
     except Exception as e:

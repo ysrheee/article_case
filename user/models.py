@@ -5,6 +5,7 @@ from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    key = models.CharField(unique=True, max_length=64, verbose_name='유저키')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일')
 
     class Meta:

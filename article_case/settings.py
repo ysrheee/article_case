@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
-    'article',
-    'social_django'
+    'article'
 ]
 
 MIDDLEWARE = [
@@ -138,7 +137,8 @@ STATICFILES_FINDERS = (
 )
 
 
-# FACEBOOK
+# FACEBOOK: Not Used
+"""
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
@@ -149,3 +149,4 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'fields': 'id, name, email'
 }
+"""
